@@ -3,14 +3,18 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import logo from "../../assets/logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../app/Slice/userSlice";
+import { toast } from "react-toastify";
 
 export default function NavBar() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
-    alert("log out");
-    navigate("/auth");
+    toast("Logout successful");
+    dispatch(setUser(null));
   };
 
   return (

@@ -24,7 +24,7 @@ export default function AuthPage() {
           </Col>
           <Col>
             <Tabs
-              defaultActiveKey="signUp"
+              defaultActiveKey="login"
               id="uncontrolled-tab-example"
               className="mb-3"
             >
