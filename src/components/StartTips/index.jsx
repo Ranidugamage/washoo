@@ -7,6 +7,7 @@ import tip2 from "../../assets/tips/2.png";
 import tip3 from "../../assets/tips/3.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const tipsList = [
   {
@@ -31,10 +32,16 @@ const tipsList = [
 export default function StartTips() {
   const [index, setIndex] = useState(0);
   const navigate = useNavigate();
+  const user = useSelector((state) => state.user.user);
 
   const handleNextClick = () => {
     if (index === tipsList.length - 1) {
-      navigate("/dashboard");
+      if (user.roll === "customer") {
+        navigate("/customer-dashboard");
+
+      } else if (user.roll === "laundryOwner") {
+        navigate("/LaundryOwner-dashboard");
+      }
     } else {
       setIndex(index + 1);
     }

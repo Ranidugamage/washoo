@@ -6,6 +6,8 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import CustomerDashBoardPage from "./Pages/CustomerDashBoardPage";
 import LaundryOwnerDashBoardPage from "./Pages/LaundryOwnerDashBoardPage";
+import ServiceListPage from "./Pages/ServiceListPage";
+import AddServicePage from "./Pages/AddServicePage";
 
 function App() {
   return (
@@ -28,6 +30,22 @@ function App() {
             element={
               <ProtectedRoute>
                 <LaundryOwnerDashBoardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="LaundryOwner-dashboard/service-list"
+            element={
+              <ProtectedRoute>
+                <ServiceListPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="LaundryOwner-dashboard/add-service"
+            element={
+              <ProtectedRoute>
+                <AddServicePage />
               </ProtectedRoute>
             }
           />
