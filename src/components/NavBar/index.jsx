@@ -2,14 +2,13 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import logo from "../../assets/logo.png";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../app/Slice/userSlice";
 import { toast } from "react-toastify";
 
 export default function NavBar() {
   const { pathname } = useLocation();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -26,7 +25,8 @@ export default function NavBar() {
           </Link>
         </Navbar.Brand>
         <Nav className="justify-content-end">
-          {pathname.substring(0, 10) === "/dashboard" ? (
+          {pathname.substring(0, 19) === "/customer-dashboard" ||
+          pathname.substring(0, 23) === "/LaundryOwner-dashboard" ? (
             <>
               <Nav.Link onClick={handleLogout}>Log out</Nav.Link>
             </>

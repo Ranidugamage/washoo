@@ -20,6 +20,7 @@ export default function SignUpForm() {
       email: "",
       password: "",
       conformPassword: "",
+      isCheck: false,
     },
     validationSchema: Yup.object({
       userName: Yup.string().required("Required"),
@@ -36,7 +37,7 @@ export default function SignUpForm() {
         .post("http://localhost:8004/signup", {
           id: values.userName,
           email: values.email,
-          roll: "customer",
+          roll: values.isCheck ? "laundryOwner" : "customer",
           password: values.password,
         })
         .then(function (response) {
@@ -52,7 +53,11 @@ export default function SignUpForm() {
               toast("Login successful");
               dispatch(setUser(response.data));
               setIsLording(false);
-              navigate("/start-tips");
+              if (response.data.roll === "customer") {
+                navigate("/customer-dashboard");
+              } else if (response.data.roll === "laundryOwner") {
+                navigate("/LaundryOwner-dashboard");
+              }
             })
             .catch(function (error) {
               toast("Unable to Login Please Log in Manually");
@@ -129,7 +134,17 @@ export default function SignUpForm() {
           <div style={{ color: "red" }}>{formik.errors.conformPassword}</div>
         ) : null}
       </Form.Group>
-
+      <Form.Group className="mb-3">
+        <Form.Check
+          type="switch"
+          id="custom-switch"
+          label="Sign Up As Launderer"
+          name="isCheck"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.isCheck}
+        />
+      </Form.Group>
       <Button variant="primary" type="submit">
         {isLording ? "Loading..." : "SignUp"}
       </Button>

@@ -2,10 +2,10 @@ import NavBar from "./components/NavBar";
 import AuthPage from "./Pages/AuthPage";
 import HomePage from "./Pages/HomePage";
 import StartTipPage from "./Pages/StartTipPage";
-
 import { Routes, Route, Outlet, Link } from "react-router-dom";
-import DashBoardPage from "./Pages/DashBoardPage";
 import ProtectedRoute from "./utils/ProtectedRoute";
+import CustomerDashBoardPage from "./Pages/CustomerDashBoardPage";
+import LaundryOwnerDashBoardPage from "./Pages/LaundryOwnerDashBoardPage";
 
 function App() {
   return (
@@ -16,10 +16,18 @@ function App() {
           <Route path="auth" element={<AuthPage />} />
 
           <Route
-            path="dashboard"
+            path="customer-dashboard"
             element={
               <ProtectedRoute>
-                <DashBoardPage />
+                <CustomerDashBoardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="LaundryOwner-dashboard"
+            element={
+              <ProtectedRoute>
+                <LaundryOwnerDashBoardPage />
               </ProtectedRoute>
             }
           />

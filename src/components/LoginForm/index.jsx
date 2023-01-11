@@ -34,7 +34,11 @@ function LoginForm() {
           toast("Login successful");
           dispatch(setUser(response.data));
           setIsLording(false);
-          navigate("/dashboard");
+          if (response.data.roll === "customer") {
+            navigate("/customer-dashboard");
+          } else if (response.data.roll === "laundryOwner") {
+            navigate("/LaundryOwner-dashboard");
+          }
         })
         .catch(function (error) {
           // alert.error(error.response.data.error);

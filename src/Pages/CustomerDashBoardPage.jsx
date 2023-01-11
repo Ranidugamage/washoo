@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import Search from "../components/Search";
 import Slider from "../components/Slider";
 
-export default function DashBoardPage() {
+export default function CustomerDashBoardPage() {
   return (
     <div
       style={{
