@@ -32,9 +32,11 @@ export default function NavBar() {
             </>
           ) : (
             <>
-              <Nav.Link>Discover</Nav.Link>
               <Nav.Link>
-                <Link to={"/auth"}>Sign Up</Link>
+                <Link to={"/start-tips"}>Discover</Link>
+              </Nav.Link>
+              <Nav.Link>
+                <Link to={"/auth"}>Join Now</Link>
               </Nav.Link>
             </>
           )}

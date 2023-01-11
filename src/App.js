@@ -26,9 +26,9 @@ function App() {
           <Route
             path="start-tips"
             element={
-              <ProtectedRoute>
-                <StartTipPage />
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              <StartTipPage />
+              // </ProtectedRoute>
             }
           />
 
