@@ -50,7 +50,7 @@ function LoginForm() {
         <Form.Control
           placeholder="User Name"
           type="text"
-          id="userName"
+          // id="userName"
           name="userName"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -65,7 +65,7 @@ function LoginForm() {
         <Form.Control
           type="password"
           placeholder="Password"
-          id="password"
+          // id="password"
           name="password"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
