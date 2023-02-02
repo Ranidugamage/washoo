@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   branch: [
     {
+      id: "1",
       name: "John Doe",
       img: "https://source.unsplash.com/random",
       address: "123 Main Street, Anytown USA 12345",
@@ -18,6 +19,7 @@ const initialState = {
       ],
     },
     {
+      id: "2",
       name: "Jane Doe",
       img: "https://source.unsplash.com/random",
       address: "456 Park Avenue, Anytown USA 67890",
@@ -33,6 +35,7 @@ const initialState = {
       ],
     },
     {
+      id: "3",
       name: "Jim Smith",
       img: "https://source.unsplash.com/random",
       address: "789 Elm Street, Anytown USA 101112",
@@ -48,6 +51,7 @@ const initialState = {
       ],
     },
     {
+      id: "4",
       name: "Sarah Johnson",
       img: "https://source.unsplash.com/random.jpg",
       address: "246 8th Avenue, Anytown USA 131415",
@@ -63,6 +67,7 @@ const initialState = {
       ],
     },
     {
+      id: "5",
       name: "Sarah Johnson",
       img: "https://source.unsplash.com/random.jpg",
       address: "246 8th Avenue, Anytown USA 131415",
@@ -78,6 +83,7 @@ const initialState = {
       ],
     },
     {
+      id: "6",
       name: "Sarah Johnson",
       img: "https://source.unsplash.com/random.jpg",
       address: "246 8th Avenue, Anytown USA 131415",
@@ -93,6 +99,7 @@ const initialState = {
       ],
     },
     {
+      id: "7",
       name: "Sarah Johnson",
       img: "https://source.unsplash.com/random.jpg",
       address: "246 8th Avenue, Anytown USA 131415",
@@ -108,6 +115,7 @@ const initialState = {
       ],
     },
     {
+      id: "8",
       name: "Sarah Johnson",
       img: "https://source.unsplash.com/random.jpg",
       address: "246 8th Avenue, Anytown USA 131415",
@@ -123,6 +131,7 @@ const initialState = {
       ],
     },
     {
+      id: "9",
       name: "Sarah Johnson",
       img: "https://source.unsplash.com/random.jpg",
       address: "246 8th Avenue, Anytown USA 131415",
