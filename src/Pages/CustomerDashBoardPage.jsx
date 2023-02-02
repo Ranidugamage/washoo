@@ -1,9 +1,14 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import BranchCard from "../components/BranchCard";
 import Search from "../components/Search";
 import Slider from "../components/Slider";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { useSelector } from "react-redux";
 
 export default function CustomerDashBoardPage() {
+  const branchData = useSelector((state) => state.branch.branch);
   return (
     <div
       style={{
@@ -15,6 +20,18 @@ export default function CustomerDashBoardPage() {
       </Container>
       <div style={{ marginTop: "30px" }}>
         <Slider />
+        <Container>
+          <Row>
+            {
+              branchData.map((data) => (
+                <Col xs={12} md={3} ><BranchCard name={data.name} address={data.address} img={data.img} /></Col>
+              ))
+
+            }
+          </Row>
+
+
+        </Container>
       </div>
     </div>
   );
