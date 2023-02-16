@@ -16,79 +16,56 @@ export default function SignUpForm() {
 
   const formik = useFormik({
     initialValues: {
-      userName: "",
       email: "",
       password: "",
       conformPassword: "",
       isCheck: false,
     },
     validationSchema: Yup.object({
-      userName: Yup.string().required("Required"),
       email: Yup.string().required("Required").email("Invalid email format"),
       password: Yup.string().required("Required"),
       conformPassword: Yup.string()
         .required("Required")
         .oneOf([Yup.ref("password"), null], "Passwords must match"),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       console.log(values);
       setIsLording(true);
-      axios
-        .post("http://localhost:8004/signup", {
-          id: values.userName,
+      try {
+        const response = await axios.post("http://localhost:3001/api/user/signup", {
           email: values.email,
           roll: values.isCheck ? "laundryOwner" : "customer",
           password: values.password,
-        })
-        .then(function (response) {
-          toast("Register successful");
-          toast("Trying to Log In");
-          //login
-          axios
-            .post("http://localhost:8004/signin", {
-              id: values.userName,
-              password: values.password,
-            })
-            .then(function (response) {
-              toast("Login successful");
-              dispatch(setUser(response.data));
-              setIsLording(false);
-              if (response.data.roll === "customer") {
-                navigate("/customer-dashboard");
-              } else if (response.data.roll === "laundryOwner") {
-                navigate("/LaundryOwner-dashboard");
-              }
-            })
-            .catch(function (error) {
-              toast("Unable to Login Please Log in Manually");
-              console.log(error);
-              setIsLording(false);
-            });
-          setIsLording(false);
-        })
-        .catch(function (error) {
-          toast(error.response.data.error);
-          setIsLording(false);
         });
+        toast("Register successful");
+        toast("Trying to Log In");
+        // login
+        const loginResponse = await axios.post("http://localhost:3001/api/user/login", {
+          email: values.email,
+          password: values.password,
+        });
+        toast("Login successful");
+        dispatch(setUser(loginResponse.data));
+        setIsLording(false);
+        if (loginResponse.data.roll === "customer") {
+          navigate("/customer-dashboard");
+        } else if (loginResponse.data.roll === "laundryOwner") {
+          navigate("/LaundryOwner-dashboard/branch-list");
+        }
+      } catch (error) {
+        toast(error.response.data.error);
+        setIsLording(false);
+        if (error.response.status === 401) {
+          toast("Unable to Login Please Log in Manually");
+          console.log(error);
+        }
+      }
     },
+
   });
 
   return (
     <Form onSubmit={formik.handleSubmit}>
-      <Form.Group className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="User Name"
-          // id="userName"
-          name="userName"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.userName}
-        />
-        {formik.touched.userName && formik.errors.userName ? (
-          <div style={{ color: "red" }}>{formik.errors.userName}</div>
-        ) : null}
-      </Form.Group>
 
       <Form.Group className="mb-3">
         <Form.Control

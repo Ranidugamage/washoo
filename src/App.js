@@ -6,8 +6,10 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import CustomerDashBoardPage from "./Pages/CustomerDashBoardPage";
 import LaundryOwnerDashBoardPage from "./Pages/LaundryOwnerDashBoardPage";
-import ServiceListPage from "./Pages/ServiceListPage";
-import AddServicePage from "./Pages/AddServicePage";
+import BranchListPage from "./Pages/BranchListPage";
+import AddBranchPage from "./Pages/AddBranchPage";
+import BranchDetails from "./Pages/BranchDetails";
+import LaundryOwnerCalender from "./Pages/LaundryOwnerCalender";
 
 function App() {
   return (
@@ -26,6 +28,14 @@ function App() {
             }
           />
           <Route
+            path="customer-dashboard/:branchID"
+            element={
+              <ProtectedRoute>
+                <BranchDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="LaundryOwner-dashboard"
             element={
               <ProtectedRoute>
@@ -34,18 +44,26 @@ function App() {
             }
           />
           <Route
-            path="LaundryOwner-dashboard/service-list"
+            path="LaundryOwner-dashboard/branch-list"
             element={
               <ProtectedRoute>
-                <ServiceListPage />
+                <BranchListPage />
               </ProtectedRoute>
             }
           />
           <Route
-            path="LaundryOwner-dashboard/add-service"
+            path="LaundryOwner-dashboard/add-branch"
             element={
               <ProtectedRoute>
-                <AddServicePage />
+                <AddBranchPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="LaundryOwner-dashboard/calender"
+            element={
+              <ProtectedRoute>
+                <LaundryOwnerCalender />
               </ProtectedRoute>
             }
           />
@@ -78,7 +96,7 @@ function Layout() {
 
 function NoMatch() {
   return (
-    <div>
+    <div className="d-flex flex-column justify-content-center align-items-center vh-100">
       <h2>Nothing to see here!</h2>
       <p>
         <Link to="/">Go to the home page</Link>

@@ -16,52 +16,52 @@ function LoginForm() {
 
   const formik = useFormik({
     initialValues: {
-      userName: "",
+      email: "",
       password: "",
     },
     validationSchema: Yup.object({
-      userName: Yup.string().required("Required"),
+      email: Yup.string().required("Required"),
       password: Yup.string().required("Required"),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       setIsLording(true);
-      axios
-        .post("http://localhost:8004/signin", {
-          id: values.userName,
+      try {
+        const response = await axios.post("http://localhost:3001/api/user/login", {
+          email: values.email,
           password: values.password,
-        })
-        .then(function (response) {
-          toast("Login successful");
-          dispatch(setUser(response.data));
-          setIsLording(false);
-          if (response.data.roll === "customer") {
-            navigate("/customer-dashboard");
-          } else if (response.data.roll === "laundryOwner") {
-            navigate("/LaundryOwner-dashboard");
-          }
-        })
-        .catch(function (error) {
-          // alert.error(error.response.data.error);
-          toast(error.response.data.error);
-          setIsLording(false);
         });
+        toast("Login successful");
+        dispatch(setUser(response.data));
+        console.log(response.data)
+        setIsLording(false);
+        if (response.data.roll === "customer") {
+          navigate("/customer-dashboard");
+        } else if (response.data.roll === "laundryOwner") {
+          navigate("/LaundryOwner-dashboard/branch-list");
+        }
+      } catch (error) {
+        // alert.error(error.response.data.error);
+        toast(error.response.data.error);
+        setIsLording(false);
+      }
     },
+
   });
 
   return (
     <Form onSubmit={formik.handleSubmit}>
       <Form.Group className="mb-3">
         <Form.Control
-          placeholder="User Name"
+          placeholder="Email"
           type="text"
           // id="userName"
-          name="userName"
+          name="email"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.userName}
+          value={formik.values.email}
         />
-        {formik.touched.userName && formik.errors.userName ? (
-          <div style={{ color: "red" }}>{formik.errors.userName}</div>
+        {formik.touched.email && formik.errors.email ? (
+          <div style={{ color: "red" }}>{formik.errors.email}</div>
         ) : null}
       </Form.Group>
 

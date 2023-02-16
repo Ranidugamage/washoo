@@ -48,10 +48,10 @@ function LaundryOwnerNav() {
   return (
     <>
       <Nav.Link>
-        <Link to={"/LaundryOwner-dashboard/service-list"}>Service List</Link>
+        <Link to={"/LaundryOwner-dashboard/branch-list"}>Branch List</Link>
       </Nav.Link>
       <Nav.Link>
-        <Link to={"LaundryOwner-dashboard/add-service"}>Add Service</Link>
+        <Link to={"LaundryOwner-dashboard/add-branch"}>Add Branch</Link>
       </Nav.Link>
       <LogOut />
     </>

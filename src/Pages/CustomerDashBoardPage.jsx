@@ -24,7 +24,7 @@ export default function CustomerDashBoardPage() {
           <Row>
             {
               branchData.map((data) => (
-                <Col key={data.id} xs={12} md={3} ><BranchCard name={data.name} address={data.address} img={data.img} /></Col>
+                <Col key={data.id} xs={12} md={3} ><BranchCard data={data} /></Col>
               ))
 
             }
