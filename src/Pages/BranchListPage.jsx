@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Table from 'react-bootstrap/Table';
 import { useNavigate } from "react-router-dom";
 
-export default function ServiceListPage({ userId }) {
+export default function ServiceListPage() {
     const [branchData, setBranchData] = useState(null);
     const user = useSelector((state) => state.user.user);
     const navigate = useNavigate();
@@ -14,9 +14,9 @@ export default function ServiceListPage({ userId }) {
 
         async function fetchData() {
             const url = "http://localhost:3001/api/branch/get-branch-by-user-id";
-            const data = { userId: "63ed98ab975b003ef55869d1" };
+            const data = { userId: user._id };
             try {
-                const response = await axios.get(url, data);
+                const response = await axios.post(url, data);
                 if (isMounted) {
                     setBranchData(response.data);
                     console.log(response.data)
@@ -31,7 +31,7 @@ export default function ServiceListPage({ userId }) {
         return () => {
             isMounted = false;
         };
-    }, [userId]);
+    }, [user._id]);
 
 
     const handleNavigateCalender = (_id) => {

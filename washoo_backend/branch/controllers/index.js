@@ -33,10 +33,8 @@ exports.getAllBranches = async (req, res) => {
 };
 
 exports.getBranchByUserId = async (req, res) => {
-  const { userId } = req.params;
-
   try {
-    const branch = await Branch.find(userId);
+    const branch = await Branch.find(req.body);
     if (branch) {
       res.status(200).json(branch);
     } else {
