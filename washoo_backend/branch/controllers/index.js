@@ -1,14 +1,24 @@
 const Branch = require("../models");
 
 exports.createBranch = async (req, res) => {
-  const { userId, name, phone, street, postalCode, city, country, services } =
-    req.body;
+  const {
+    userId,
+    name,
+    phone,
+    img,
+    street,
+    postalCode,
+    city,
+    country,
+    services,
+  } = req.body;
 
   try {
     const newBranch = new Branch({
       userId,
       name,
       phone,
+      img,
       street,
       postalCode,
       city,

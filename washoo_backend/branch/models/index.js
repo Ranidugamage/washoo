@@ -6,6 +6,7 @@ const branchSchema = mongoose.Schema({
   phone: { type: String, required: true },
   street: { type: String, required: true },
   postalCode: { type: String, required: true },
+  img: { type: String, required: true },
   city: { type: String, required: true },
   country: { type: String, required: true },
   services: [

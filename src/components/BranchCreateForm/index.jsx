@@ -17,6 +17,7 @@ function BranchCreateForm() {
         initialValues: {
             name: "",
             phone: "",
+            img: "",
             street: "",
             postalCode: "",
             city: "",
@@ -26,6 +27,7 @@ function BranchCreateForm() {
         validationSchema: Yup.object({
             name: Yup.string().required("Required"),
             phone: Yup.string().required("Required"),
+            img: Yup.string().required("Required"),
             street: Yup.string().required("Required"),
             postalCode: Yup.string().required("Required"),
             city: Yup.string().required("Required"),
@@ -88,6 +90,20 @@ function BranchCreateForm() {
                 />
                 {formik.touched.phone && formik.errors.phone ? (
                     <div style={{ color: "red" }}>{formik.errors.phone}</div>
+                ) : null}
+            </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Control
+                    placeholder="Image Uri"
+                    type="text"
+                    // id="userName"
+                    name="img"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.img}
+                />
+                {formik.touched.img && formik.errors.img ? (
+                    <div style={{ color: "red" }}>{formik.errors.img}</div>
                 ) : null}
             </Form.Group>
             <Form.Group className="mb-3">
