@@ -5,12 +5,15 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import Container from "react-bootstrap/Container";
 import PaymentForm from '../components/PaymentForm';
+import BranchService from '../components/BranchService';
 
 moment.locale("en-GB");
 const localizer = momentLocalizer(moment);
 
 export default function BranchDetails() {
     const { state } = useLocation();
+
+    console.log(state)
 
     const [eventsData, setEventsData] = useState([]);
 
@@ -20,6 +23,9 @@ export default function BranchDetails() {
 
     return (
         <Container style={{ marginTop: '100px' }}>
+            <h1 style={{ textAlign: "center" }}>Services</h1>
+            <hr className="my-4" />
+            <BranchService services={state.services} />
             <h1 style={{ textAlign: "center" }}>Time Slot</h1>
             <hr className="my-4" />
             <Calendar

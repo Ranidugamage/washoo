@@ -1,158 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  branch: [
-    {
-      id: "1",
-      name: "John Doe",
-      img: "https://source.unsplash.com/random",
-      address: "123 Main Street, Anytown USA 12345",
-      services: [
-        {
-          name: "Haircut",
-          price: 25,
-        },
-        {
-          name: "Shampoo",
-          price: 10,
-        },
-      ],
-    },
-    {
-      id: "2",
-      name: "Jane Doe",
-      img: "https://source.unsplash.com/random",
-      address: "456 Park Avenue, Anytown USA 67890",
-      services: [
-        {
-          name: "Manicure",
-          price: 20,
-        },
-        {
-          name: "Pedicure",
-          price: 30,
-        },
-      ],
-    },
-    {
-      id: "3",
-      name: "Jim Smith",
-      img: "https://source.unsplash.com/random",
-      address: "789 Elm Street, Anytown USA 101112",
-      services: [
-        {
-          name: "Haircolor",
-          price: 50,
-        },
-        {
-          name: "Blow Dry",
-          price: 25,
-        },
-      ],
-    },
-    {
-      id: "4",
-      name: "Sarah Johnson",
-      img: "https://source.unsplash.com/random.jpg",
-      address: "246 8th Avenue, Anytown USA 131415",
-      services: [
-        {
-          name: "Facial",
-          price: 75,
-        },
-        {
-          name: "Massage",
-          price: 100,
-        },
-      ],
-    },
-    {
-      id: "5",
-      name: "Sarah Johnson",
-      img: "https://source.unsplash.com/random.jpg",
-      address: "246 8th Avenue, Anytown USA 131415",
-      services: [
-        {
-          name: "Facial",
-          price: 75,
-        },
-        {
-          name: "Massage",
-          price: 100,
-        },
-      ],
-    },
-    {
-      id: "6",
-      name: "Sarah Johnson",
-      img: "https://source.unsplash.com/random.jpg",
-      address: "246 8th Avenue, Anytown USA 131415",
-      services: [
-        {
-          name: "Facial",
-          price: 75,
-        },
-        {
-          name: "Massage",
-          price: 100,
-        },
-      ],
-    },
-    {
-      id: "7",
-      name: "Sarah Johnson",
-      img: "https://source.unsplash.com/random.jpg",
-      address: "246 8th Avenue, Anytown USA 131415",
-      services: [
-        {
-          name: "Facial",
-          price: 75,
-        },
-        {
-          name: "Massage",
-          price: 100,
-        },
-      ],
-    },
-    {
-      id: "8",
-      name: "Sarah Johnson",
-      img: "https://source.unsplash.com/random.jpg",
-      address: "246 8th Avenue, Anytown USA 131415",
-      services: [
-        {
-          name: "Facial",
-          price: 75,
-        },
-        {
-          name: "Massage",
-          price: 100,
-        },
-      ],
-    },
-    {
-      id: "9",
-      name: "Sarah Johnson",
-      img: "https://source.unsplash.com/random.jpg",
-      address: "246 8th Avenue, Anytown USA 131415",
-      services: [
-        {
-          name: "Facial",
-          price: 75,
-        },
-        {
-          name: "Massage",
-          price: 100,
-        },
-      ],
-    },
-  ],
+  branch: [],
 };
 
 export const branchSlice = createSlice({
   name: "branch",
   initialState,
   reducers: {
+    setBranch: (state, action) => {
+      state.branch = action.payload;
+      console.log(state.branch);
+    },
     branchFilterByName: (state, action) => {
       state.branch = state.branch.filter((item) =>
         item.name.toLocaleLowerCase().match(action.payload.toLocaleLowerCase())
@@ -173,6 +32,7 @@ export const branchSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  setBranch,
   branchFilterByLocation,
   resetToInitialBranchState,
   branchFilterByName,

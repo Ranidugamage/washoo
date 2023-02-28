@@ -6,10 +6,13 @@ import Slider from "../components/Slider";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setBranch } from "../app/Slice/branchSlice";
 import axios from "axios";
 
 export default function CustomerDashBoardPage() {
   const branchData = useSelector((state) => state.branch.branch);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let isMounted = true;
@@ -19,7 +22,20 @@ export default function CustomerDashBoardPage() {
       try {
         const response = await axios.get(url);
         if (isMounted) {
-          console.log(response.data)
+          const newBranchData = response.data.map((obj) => {
+            const { city, country, name, phone, postalCode, services, street, _id, img } = obj;
+            return {
+              id: _id,
+              name,
+              img,
+              address: `${street} ${city}  ${country} ${postalCode}`,
+              phone,
+              services
+            }
+
+          })
+          //set data state
+          dispatch(setBranch(newBranchData));
         }
       } catch (error) {
         console.error(error);
