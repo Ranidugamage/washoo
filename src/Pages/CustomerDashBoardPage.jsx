@@ -51,17 +51,16 @@ export default function CustomerDashBoardPage() {
 
 
   return (
-    <div
-      style={{
-        paddingTop: "100px",
-      }}
-    >
-      <Container>
+    <Container>
+
+      <div
+        style={{
+          paddingTop: "100px",
+        }}
+      >
         <Search />
-      </Container>
-      <div style={{ marginTop: "30px" }}>
-        <Slider />
-        <Container>
+        <div style={{ marginTop: "30px" }}>
+          <Slider />
           <Row>
             {
               branchData.map((data) => (
@@ -70,10 +69,8 @@ export default function CustomerDashBoardPage() {
 
             }
           </Row>
-
-
-        </Container>
+        </div>
       </div>
-    </div>
+    </Container>
   );
 }
