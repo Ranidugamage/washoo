@@ -1,27 +1,37 @@
-import SimpleImageSlider from "react-simple-image-slider";
+import { Slide } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css'
 
-const images = [
+
+const divStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundSize: 'cover',
+  height: '250px'
+}
+const slideImages = [
   {
-    url: "https://images.pexels.com/photos/1000366/pexels-photo-1000366.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    url: 'https://images.unsplash.com/photo-1509721434272-b79147e0e708?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
   },
-  { url: "https://picsum.photos/id/237/200/300" },
-  { url: "https://picsum.photos/id/237/200/300" },
-  { url: "https://picsum.photos/id/237/200/300" },
-  { url: "https://picsum.photos/id/237/200/300" },
-  { url: "https://picsum.photos/id/237/200/300" },
-  { url: "https://picsum.photos/id/237/200/300" },
+  {
+    url: 'https://images.unsplash.com/photo-1506710507565-203b9f24669b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1536&q=80',
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
+  },
 ];
 
 const Slider = () => {
   return (
-    <div>
-      <SimpleImageSlider
-        width={"100%"}
-        height={200}
-        images={images}
-        showBullets={true}
-        showNavs={true}
-      />
+    <div className="slide-container">
+      <Slide>
+        {slideImages.map((slideImage, index) => (
+          <div key={index}>
+            <div style={{ ...divStyle, 'backgroundImage': `url(${slideImage.url})` }}>
+            </div>
+          </div>
+        ))}
+      </Slide>
     </div>
   );
 };
