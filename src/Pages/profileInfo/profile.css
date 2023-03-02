@@ -1,0 +1,76 @@
+.profile {
+    font-family: Arial, sans-serif;
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 2rem;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+  }
+  
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .photoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .photo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+  
+  .editButton {
+    background-color: #0077ff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .editButton:hover {
+    background-color: #0058cc;
+  }
+  
+  .formContainer {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+  }
+  
+  .label {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+  }
+  
+  .saveButton {
+    background-color: #0077ff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .saveButton:hover {
+    background-color: #0058cc;
+  }

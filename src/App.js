@@ -8,8 +8,12 @@ import CustomerDashBoardPage from "./Pages/CustomerDashBoardPage";
 import LaundryOwnerDashBoardPage from "./Pages/LaundryOwnerDashBoardPage";
 import BranchListPage from "./Pages/BranchListPage";
 import AddBranchPage from "./Pages/AddBranchPage";
-import BranchDetails from "./Pages/BranchDetails";
+import BranchDetails from "./Pages/branchDetails/BranchDetails";
 import LaundryOwnerCalender from "./Pages/LaundryOwnerCalender";
+import ProfilePage from "./Pages/profileInfo";
+import OrderPage from "./Pages/myOrders";
+import ReviewsTable from "./Pages/reviews";
+
 
 function App() {
   return (
@@ -30,9 +34,9 @@ function App() {
           <Route
             path="customer-dashboard/:branchID"
             element={
-              <ProtectedRoute>
+             
                 <BranchDetails />
-              </ProtectedRoute>
+          
             }
           />
           <Route
@@ -75,6 +79,25 @@ function App() {
               // </ProtectedRoute>
             }
           />
+          <Route
+            path="profile"
+            element={
+                <ProfilePage />
+            }
+          />
+          <Route
+            path="myOrder"
+            element={
+                <OrderPage />
+            }
+          />
+          <Route
+            path="myReviews"
+            element={
+                <ReviewsTable />
+            }
+          />
+          
 
           <Route path="*" element={<NoMatch />} />
         </Route>

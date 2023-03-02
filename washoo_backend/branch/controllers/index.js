@@ -1,39 +1,44 @@
-const Branch = require("../models");
 
-exports.createBranch = async (req, res) => {
-  const {
-    userId,
-    name,
-    phone,
-    img,
-    street,
-    postalCode,
-    city,
-    country,
-    services,
-  } = req.body;
+const Branch = require('../models');
 
+const createBranch = async (req, res) => {
   try {
-    const newBranch = new Branch({
-      userId,
-      name,
-      phone,
-      img,
-      street,
-      postalCode,
-      city,
-      country,
-      services,
-    });
-
+    const newBranch = new Branch(req.body);
     const savedBranch = await newBranch.save();
     res.status(201).json(savedBranch);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
 
-exports.getAllBranches = async (req, res) => {
+const updateBranch = async (req, res) => {
+  try {
+    const updatedBranch = await Branch.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res.status(200).json(updatedBranch);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+const deleteBranch = async (req, res) => {
+  try {
+    const deletedBranch = await Branch.findByIdAndDelete(req.params.id);
+    res.status(200).json(deletedBranch);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+
+const getAllBranches = async (req, res) => {
   try {
     const branches = await Branch.find();
     res.status(200).json(branches);
@@ -42,7 +47,7 @@ exports.getAllBranches = async (req, res) => {
   }
 };
 
-exports.getBranchByUserId = async (req, res) => {
+const getBranchByUserId = async (req, res) => {
   try {
     const branch = await Branch.find(req.body);
     if (branch) {
@@ -56,3 +61,5 @@ exports.getBranchByUserId = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+module.exports = { createBranch, updateBranch, deleteBranch, getAllBranches, getBranchByUserId };

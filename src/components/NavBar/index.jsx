@@ -6,6 +6,21 @@ import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../app/Slice/userSlice";
 import { toast } from "react-toastify";
+import Dropdown from "../dropdown/index"
+import { motion } from "framer-motion";
+
+const MotionNavLink = ({ to, children }) => {
+  return (
+    <motion.button
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+    >
+      <Link to={to}>
+        {children}
+      </Link>
+    </motion.button>
+  );
+};
 
 export default function NavBar() {
   const { pathname } = useLocation();
@@ -24,13 +39,15 @@ function NavBarLayout({ children }) {
     <Navbar bg="light" variant="light" fixed="top">
       <Container>
         <Navbar.Brand>
-          <Link to={"/"}>
+          <Link to={"/customer-dashboard"}>
             <img alt="sideLogo" src={logo} width={"300px"} />
           </Link>
         </Navbar.Brand>
         <Nav className="justify-content-end">
 
           {children}
+
+          
 
         </Nav>
       </Container>
@@ -40,20 +57,24 @@ function NavBarLayout({ children }) {
 
 function CustomerNav() {
   return (
-    <LogOut />
+    <Dropdown />
   )
 }
 
 function LaundryOwnerNav() {
   return (
     <>
-      <Nav.Link>
-        <Link to={"/LaundryOwner-dashboard/branch-list"}>Branch List</Link>
-      </Nav.Link>
-      <Nav.Link>
-        <Link to={"LaundryOwner-dashboard/add-branch"}>Add Branch</Link>
-      </Nav.Link>
-      <LogOut />
+      <Nav.Item>
+        <MotionNavLink to={"/LaundryOwner-dashboard/branch-list"}>
+          Branch List
+        </MotionNavLink>
+      </Nav.Item>
+      <Nav.Item>
+        <MotionNavLink to={"/LaundryOwner-dashboard/add-branch"}>
+          Add Branch
+        </MotionNavLink>
+      </Nav.Item>
+      <Dropdown />
     </>
   )
 }
