@@ -1,0 +1,18 @@
+.container-review {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .table-container-review {
+    max-width: 1800px;
+    max-height: 800px;
+    width: 100%;
+    margin: auto;
+  }
+
+  .img-review{
+    width: 80;
+    height: 80;
+  }
